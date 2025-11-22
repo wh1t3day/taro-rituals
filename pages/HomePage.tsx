@@ -56,7 +56,7 @@ export const HomePage: React.FC = () => {
 
           <p className="text-lg sm:text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed animate-slide-up opacity-90" style={{ animationDelay: '0.2s' }}>
             Я объединяю древние знания Таро, точность Матрицы Судьбы и силу Ритуальной магии для решения нерешаемых задач.
-            <span className="block mt-4 text-purple-300 font-medium">Личный прием. Дорого. Результативно.</span>
+            <span className="block mt-4 text-purple-300 font-medium">Личный прием. Глубокий анализ. Реальная помощь.</span>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center w-full animate-slide-up" style={{ animationDelay: '0.4s' }}>
