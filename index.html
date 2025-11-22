@@ -19,6 +19,7 @@
                 gold: '#d4af37',
                 'gold-light': '#f3e5ab',
                 purple: '#7e22ce',
+                'purple-glow': '#a855f7',
                 dark: '#050505',
               }
             },
@@ -29,15 +30,18 @@
             backgroundImage: {
               'mystic-gradient': 'radial-gradient(circle at center, rgba(126, 34, 206, 0.15) 0%, rgba(2, 6, 23, 0) 70%)',
               'stars': 'radial-gradient(white 1px, transparent 1px)',
+              'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
             },
             animation: {
               'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               'float': 'float 6s ease-in-out infinite',
               'float-delayed': 'float 6s ease-in-out 3s infinite',
+              'float-fast': 'float 4s ease-in-out infinite',
               'fade-in': 'fadeIn 1.2s ease-out forwards',
               'slide-up': 'slideUp 0.8s ease-out 0.3s forwards',
               'spin-slow': 'spin 15s linear infinite',
               'shimmer': 'shimmer 2s linear infinite',
+              'tilt': 'tilt 10s infinite linear',
             },
             keyframes: {
               float: {
@@ -55,6 +59,11 @@
               shimmer: {
                 'from': { backgroundPosition: '0 0' },
                 'to': { backgroundPosition: '-200% 0' },
+              },
+              tilt: {
+                '0%, 50%, 100%': { transform: 'rotate(0deg)' },
+                '25%': { transform: 'rotate(1deg)' },
+                '75%': { transform: 'rotate(-1deg)' },
               }
             }
           },
@@ -65,14 +74,14 @@
   <script type="importmap">
 {
   "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
     "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
-    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
-    "vite": "https://aistudiocdn.com/vite@^7.2.4"
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
   }
 }
 </script>
