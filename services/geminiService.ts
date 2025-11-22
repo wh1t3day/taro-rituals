@@ -1,11 +1,10 @@
 import { GoogleGenAI } from "@google/genai";
 
-const apiKey = process.env.API_KEY || '';
-const ai = new GoogleGenAI({ apiKey });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const askOracle = async (question: string): Promise<string> => {
-  if (!apiKey) {
-    return "Энергия Вселенной сейчас недоступна (API Key missing). Попробуйте позже.";
+  if (!process.env.API_KEY) {
+    return "Энергия Вселенной сейчас недоступна (API Key missing). Пожалуйста, настройте API_KEY.";
   }
 
   try {
@@ -28,7 +27,7 @@ export const askOracle = async (question: string): Promise<string> => {
 };
 
 export const generateDailyEnergy = async (): Promise<{ title: string; text: string }> => {
-  if (!apiKey) {
+  if (!process.env.API_KEY) {
     return { title: "Карта дня", text: "Слушайте свое сердце." };
   }
 
