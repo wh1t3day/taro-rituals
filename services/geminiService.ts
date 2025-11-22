@@ -1,13 +1,22 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Helper to retrieve the API key safely
+const getApiKey = () => {
+  // This handles the 'process.env.API_KEY' replacement from vite.config.ts
+  return process.env.API_KEY; 
+};
 
 export const askOracle = async (question: string): Promise<string> => {
-  if (!process.env.API_KEY) {
-    return "Энергия Вселенной сейчас недоступна (API Key missing). Пожалуйста, настройте API_KEY.";
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    console.warn("API Key is missing");
+    return "Энергия Вселенной сейчас недоступна (API Key не настроен). Пожалуйста, добавьте VITE_API_KEY в настройках Vercel.";
   }
 
   try {
+    // Initialize specifically for this request to ensure fresh config
+    const ai = new GoogleGenAI({ apiKey });
+    
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: `User question: ${question}`,
@@ -22,16 +31,19 @@ export const askOracle = async (question: string): Promise<string> => {
     return response.text || "Туман скрывает будущее...";
   } catch (error) {
     console.error("Oracle error:", error);
-    return "Эфирные помехи нарушили связь. Попробуйте еще раз.";
+    return "Эфирные помехи нарушили связь. Попробуйте еще раз позже.";
   }
 };
 
 export const generateDailyEnergy = async (): Promise<{ title: string; text: string }> => {
-  if (!process.env.API_KEY) {
-    return { title: "Карта дня", text: "Слушайте свое сердце." };
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    return { title: "Карта дня", text: "Слушайте свое сердце (API Key не найден)." };
   }
 
   try {
+    const ai = new GoogleGenAI({ apiKey });
+    
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: "Generate a daily esoteric forecast.",
